@@ -1,0 +1,6 @@
+@use './../../assets/scss/mixins.module' as *;
+
+.container {
+    @apply bg-white shadow-2xl border-2 w-[35%];
+    @include elementCenterIntoPage
+}

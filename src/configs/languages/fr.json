@@ -2,5 +2,10 @@
     "AppName": "React Shop",
     "Menu": {
         "Login": "Connexion"
-    }
+    },
+    "FirstName": "First name",
+    "lastName": "Last name",
+    "Email": "Email",
+    "Password": "Password",
+    "ConfirmPassword": "Confirm password"
 }

@@ -1,9 +1,10 @@
-import authStyles from './authentification.module.scss';
+import { Outlet } from "react-router-dom";
 
 export default function Authentification() {
     return (
-        <div className={authStyles.container}>
+        <div>
             Authentification
+            <Outlet />
         </div>
     )
 }

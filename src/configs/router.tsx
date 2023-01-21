@@ -1,5 +1,5 @@
 import {
-    createBrowserRouter
+    createBrowserRouter, redirect
 } from "react-router-dom";
 import Authentification from "../pages/authentification/authentification";
 import ForgotPassword from "../pages/authentification/forgotPassword/forgotPassword";
@@ -28,8 +28,19 @@ const router = createBrowserRouter([
             {
                 path: Paths.RESETPASSWORD,
                 element: <ResetPassword />
+            },
+            {
+                path: "",
+                loader: () => redirect(`${Paths.SIGNIN}`)
             }
         ]
+    },
+    {
+        path: Paths.DEFAULT,
+        loader: () => {
+            return redirect(`${Paths.AUTH}/${Paths.SIGNIN}`)
+        }
+
     }
 ])
 

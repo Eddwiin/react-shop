@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useChange, useSubmit } from "../../../helpers/formHooks";
+import { useChange, useSubmit } from "../../../helpers/hooks/form";
+import { isValidName } from "../../../helpers/regex/form";
+import { FormDataChangedHook, FormDataSubmitHook } from "../../../shared/interfaces/form";
 
 export default function SignUp() {
     const { t } = useTranslation();
@@ -9,15 +11,40 @@ export default function SignUp() {
         lastName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        formsErrors: {
+            isValidFirstName: false,
+            isValidLastName: false,
+            isValidEmail: false,
+            isValidPassword: false,
+            isValidConfirmPassword: false
+        }
     })
 
-    const handleChange = useChange((fieldUpdated: { [k: string]: string }) => {
+    const validateField = (fieldUpdated: FormDataChangedHook) => {
+        Object.entries(fieldUpdated).forEach(([key, value]) => {
+            switch (key) {
+                case 'firstName':
+                    const isValidFirstName = isValidName(value as string);
+                    const formsErrors = { ...state.formsErrors, isValidFirstName }
+                    setState({
+                        ...state,
+                        formsErrors
+                    })
+
+                    break;
+            }
+        })
+    }
+
+    const handleChange = useChange((fieldUpdated: FormDataChangedHook) => {
+        validateField(fieldUpdated)
         setState({ ...state, ...fieldUpdated })
     });
 
-    const handleSubmit = useSubmit((value: { [k: string]: FormDataEntryValue }) => {
-        console.log(value);
+
+    const handleSubmit = useSubmit((value: FormDataSubmitHook) => {
+        console.log(state);
     });
 
     return (

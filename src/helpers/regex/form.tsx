@@ -1,1 +1,0 @@
-export const isValidName = (value: string) => new RegExp(/^(?=.{3,20}$)[a-z]+(?:['_.\s][a-z]+)*$/).test(value);

@@ -3,8 +3,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useChange } from "../../../helpers/hooks/form";
+import { useAppDispatch } from '../../../helpers/hooks/redux';
 import { userSchema } from '../../../helpers/schemas/user';
 import { FormDataChangedHook } from "../../../shared/interfaces/form";
+import { signUp } from '../../../stores/actions';
 import { AuthFormValue } from "../models/formValue";
 
 const signUpSchema = userSchema.pick(["firstName", "lastName", "email", "phone", "password", "confirmPassword"]);
@@ -14,6 +16,9 @@ export default function SignUp() {
     const { register, handleSubmit, formState: { errors } } = useForm<AuthFormValue>({
         resolver: yupResolver(signUpSchema)
     });
+
+    const dispatch = useAppDispatch();
+
 
     const [state, setState] = useState({
         firstName: '',
@@ -36,7 +41,14 @@ export default function SignUp() {
 
 
     const onSubmit = handleSubmit(data => {
-        console.log("data", data);
+        dispatch(signUp({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phone: data.phone,
+            password: data.password,
+            confirmPassword: data.confirmPassword
+        }))
     })
 
     return (

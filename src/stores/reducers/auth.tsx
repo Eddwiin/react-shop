@@ -1,22 +1,18 @@
-import { User } from "../../shared/interfaces/user";
-import * as actionTypes from './../actions/actionTypes';
+import { UserAPI } from "../../shared/interfaces/user";
 
-export type AuthState = Omit<User, "id"> & { confirmPassword: string };
+export type AuthState = Omit<UserAPI, "id">;
 
 const initialState: AuthState = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: ""
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone: '',
+    adress: '',
+    password: ''
 }
 
 const authReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case actionTypes.SIGN_UP:
-            console.log("action ", action.payload)
-            break;
         default:
             return state;
 

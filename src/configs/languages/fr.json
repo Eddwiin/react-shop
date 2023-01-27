@@ -6,6 +6,7 @@
     "FirstName": "First name",
     "lastName": "Last name",
     "Email": "Email",
+    "Adress": "Adresse",
     "Password": "Password",
     "ConfirmPassword": "Confirm password"
 }

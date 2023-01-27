@@ -6,8 +6,9 @@ export const signUpStart = () => ({
     type: actionTypes.SIGN_UP_START
 });
 
-export const signUpFail = () => ({
-    type: actionTypes.SIGN_UP_FAIL
+export const signUpFail = (error: unknown) => ({
+    type: actionTypes.SIGN_UP_FAIL,
+    payload: { error }
 });
 
 export const signUpSuccess = () => ({

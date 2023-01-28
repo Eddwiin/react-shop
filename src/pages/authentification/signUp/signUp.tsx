@@ -11,7 +11,7 @@ import { signUp } from '../../../stores/actions';
 
 type SignUpForm = Omit<UserAPI, 'id'> & { confirm_password: string };
 
-const signUpSchema = userSchema.pick(["firstName", "lastName", "email", "phone", "adress", "password", "confirmPassword"]);
+const signUpSchema = userSchema.pick(["first_name", "last_name", "email", "phone", "adress", "password", "confirm_password"]);
 
 export default function SignUp() {
     const { t } = useTranslation();
@@ -23,12 +23,12 @@ export default function SignUp() {
 
 
     const [state, setState] = useState({
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         email: '',
         adress: '',
         password: '',
-        confirmPassword: '',
+        confirm_password: '',
     })
 
     const handleChange = useChange((fieldUpdated: FormDataChangedHook) => {
@@ -37,6 +37,7 @@ export default function SignUp() {
 
 
     const onSubmit = handleSubmit(data => {
+        console.log("HELLO WORLD")
         dispatch(signUp({
             first_name: data.first_name,
             last_name: data.last_name,

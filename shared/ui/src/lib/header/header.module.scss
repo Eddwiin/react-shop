@@ -1,0 +1,11 @@
+.header {
+    @apply bg-blue text-white flex justify-between py-4 px-8;
+
+    &__app-name {
+        @apply font-extrabold;
+    }
+
+    &__menus {
+        @apply flex;
+    }
+}

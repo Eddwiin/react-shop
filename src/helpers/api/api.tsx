@@ -1,5 +1,5 @@
 export class API {
-    static apiUrl = process.env.REACT_APP_API_URL || '';
+    static apiUrl = '';
     static headers = new Headers({
         'Content-Type': 'application/json'
     })
